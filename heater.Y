@@ -3,7 +3,7 @@
 #include <string.h>
 
 void yyerror(const char* str) {
-    fprintf(stderr, "error: %sn", str);
+    fprintf(stderr, "error: %s\n", str);
 }
 
 int yywrap() {
@@ -33,14 +33,18 @@ command:
 heat_switch:
         TOKHEAT STATE
         {
-            printf("Heat turned on or off\n");
+            if($2) {
+                printf("Heat turned on\n");
+            } else {
+                printf("Heat turned off\n");
+            }
         }
         ;
 
 target_set:
         TOKTARGET TOKTEMPERATURE NUMBER
         {
-            printf("\tTemperature set\n");
+            printf("\tTemperature set to %d\n", $3);
         }
         ;
 
