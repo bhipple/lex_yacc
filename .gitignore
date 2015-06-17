@@ -1,3 +1,4 @@
 lexer
+heater
 lex.yy.c
 y.tab.*
